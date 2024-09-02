@@ -1,0 +1,28 @@
+using System;
+
+class Program
+{
+    static void CountWords(string str)
+    {
+        int i = 0;
+        int count = 0;
+        
+        while (i < str.Length)
+        {
+            // Check if the current character is an alphabet and the next character is not
+            if (char.IsLetter(str[i]) && (i + 1 == str.Length || !char.IsLetter(str[i + 1])))
+            {
+                count++;
+            }
+            i++;
+        }
+        
+        Console.WriteLine(count);
+    }
+
+    static void Main()
+    {
+        string str = "   shubham   anand  ";
+        CountWords(str);
+    }
+}
