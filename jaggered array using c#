@@ -1,63 +1,51 @@
-#include<iostream>
-using namespace std;
+using System;
 
-int main()
+namespace JaggedArrayExample
 {
-    // Declare variable to store the number of rows
-    int row;
-    cout << "Enter the number of rows" << endl;
-    cin >> row; // Read the number of rows from the user
-
-    // Dynamic allocation of array 'c' to store the number of columns for each row
-    int *c = new int[row];
-
-    // Dynamic allocation of 2D jagged array 'arr'
-    int** arr = new int*[row];
-
-    // Prompt the user to enter the number of columns for each row
-    cout << "Enter the number of columns for each row" << endl;
-    for (int i = 0; i < row; i++)
+    class Program
     {
-        cin >> c[i]; // Read the number of columns for the current row
-    }
-
-    // Allocate memory for each row based on the number of columns specified
-    for (int i = 0; i < row; i++)
-    {
-        int col = c[i]; // Get the number of columns for the current row
-        arr[i] = new int[col]; // Allocate memory for the columns of the current row
-    }
-
-    // Prompt the user to enter the elements of the jagged array
-    cout << "Enter the elements" << endl;
-
-    // Take input for the elements of the jagged array
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < c[i]; j++)
+        static void Main(string[] args)
         {
-            cin >> arr[i][j]; // Read each element
+            // Declare variable to store the number of rows
+            int row;
+            Console.WriteLine("Enter the number of rows:");
+            row = int.Parse(Console.ReadLine()); // Read the number of rows from the user
+
+            // Dynamic allocation of jagged array 'arr'
+            int[][] arr = new int[row][];
+
+            // Prompt the user to enter the number of columns for each row
+            Console.WriteLine("Enter the number of columns for each row:");
+            for (int i = 0; i < row; i++)
+            {
+                int col = int.Parse(Console.ReadLine()); // Read the number of columns for the current row
+                arr[i] = new int[col]; // Allocate memory for the columns of the current row
+            }
+
+            // Prompt the user to enter the elements of the jagged array
+            Console.WriteLine("Enter the elements:");
+
+            // Take input for the elements of the jagged array
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < arr[i].Length; j++)
+                {
+                    arr[i][j] = int.Parse(Console.ReadLine()); // Read each element
+                }
+            }
+
+            // Print the jagged array
+            Console.WriteLine("The jagged array is:");
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < arr[i].Length; j++)
+                {
+                    Console.Write(arr[i][j] + " "); // Print each element
+                }
+                Console.WriteLine(); // Move to the next line after each row
+            }
+
+            // Memory management in C# is handled by the garbage collector, so no need to explicitly deallocate memory
         }
     }
-
-    // Print the jagged array
-    cout << "The jagged array is" << endl;
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < c[i]; j++)
-        {
-            cout << arr[i][j] << " "; // Print each element
-        }
-        cout << endl; // Move to the next line after each row
-    }
-
-    // Deallocate the memory to prevent memory leaks
-    for (int i = 0; i < row; i++)
-    {
-        delete[] arr[i]; // Deallocate memory for columns of the current row
-    }
-    delete[] arr; // Deallocate memory for the rows
-    delete[] c; // Deallocate memory for the columns array
-
-    return 0; // Return 0 to indicate successful execution
 }
