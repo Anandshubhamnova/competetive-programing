@@ -1,48 +1,67 @@
-#include<iostream>
-using namespace std;
+using System;
 
-void WavePoint(int arr[][3],int r,int c)
+namespace WavePointExample
 {
-    for(int j=0;j<c;j++)
+    class Program
     {
-        if(j%2==0)
+        static void Main(string[] args)
         {
-            for(int i=0;i<r;i++)
-            cout<<arr[i][j]<<" ";
-        }
-        else
-        {
-            for(int i=r-1;i>=0;i--)
-            cout<<arr[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-}
+            // Get the number of rows and columns from the user
+            Console.WriteLine("Enter the number of rows:");
+            int r = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the number of columns:");
+            int c = int.Parse(Console.ReadLine());
 
-int main()
-{
-    int r,c;
-    cout<<"enter the num of rows and coloumns"<<endl;
-    cin>>r>>c;
-    int arr[r][3];
-    cout<<"enter the elements"<<endl;
-    for(int i=0;i<r;i++)
-      {
-        for(int j=0;j<c;j++)
-        {
-            cin>>arr[i][j];
-        }
-    }
+            // Declare and initialize the 2D array
+            int[,] arr = new int[r, c];
 
-    for(int i=0;i<r;i++)
-      {
-        for(int j=0;j<c;j++)
-        {
-            cout<<arr[i][j]<<" ";
+            // Prompt the user to enter the elements of the array
+            Console.WriteLine("Enter the elements:");
+            for (int i = 0; i < r; i++)
+            {
+                for (int j = 0; j < c; j++)
+                {
+                    arr[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+
+            // Print the 2D array
+            Console.WriteLine("The 2D array is:");
+            for (int i = 0; i < r; i++)
+            {
+                for (int j = 0; j < c; j++)
+                {
+                    Console.Write(arr[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            // Perform and print the wave traversal
+            Console.WriteLine("Wave point:");
+            WavePoint(arr, r, c);
         }
-        cout<<endl;
+
+        // Method to perform wave traversal on a 2D array
+        static void WavePoint(int[,] arr, int r, int c)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                if (j % 2 == 0)
+                {
+                    for (int i = 0; i < r; i++)
+                    {
+                        Console.Write(arr[i, j] + " ");
+                    }
+                }
+                else
+                {
+                    for (int i = r - 1; i >= 0; i--)
+                    {
+                        Console.Write(arr[i, j] + " ");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
     }
-    cout<<"wave point:"<<endl;
-    
-    WavePoint(arr,r,3);
 }
